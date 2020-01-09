@@ -13,7 +13,8 @@ def self.all
 end 
 
 def artist_name 
-  @artist.name if @artist 
+  # @artist.name if @artist 
+  self.artist ? true : false 
 end 
   
 end 
