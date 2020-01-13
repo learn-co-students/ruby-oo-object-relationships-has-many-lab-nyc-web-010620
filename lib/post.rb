@@ -1,22 +1,31 @@
 require_relative './artist.rb'
 require_relative './author.rb'
-require_relative './post.rb'
 require_relative './song.rb'
+require 'pry'
 
 class Post
 
-    @@all = []
+    attr_accessor :title, :author
 
-    attr_accessor :title
+    @@all = []
 
     def initialize(title)
         @title = title
+        @author = author
 
         @@all << self
     end
 
     def self.all
         @@all
+    end
+
+    def author_name
+        if author
+            self.author.name 
+        else
+            nil
+        end
     end
 
 end

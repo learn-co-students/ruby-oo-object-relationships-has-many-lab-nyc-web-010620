@@ -3,6 +3,7 @@ require_relative './author.rb'
 require_relative './post.rb'
 require_relative './song.rb'
 require 'pry'
+
 class Artist
 
     @@all = []
@@ -10,8 +11,7 @@ class Artist
     attr_accessor :name
 
     def initialize(name)
-        @name = name
-        @songs = [ ]
+        @name = name 
 
         @@all << self
     end
@@ -21,11 +21,23 @@ class Artist
     end
 
     def songs
-        @songs
+       Song.all.select do |song|
+            song.artist == self
+        end 
     end
 
     def add_song(song)
-        @songs << song
+        song.artist = self
+    end
+
+    def add_song_by_name(song_name)
+        song = Song.new(song_name)
+        self.songs << song
+        song.artist = self
+    end
+
+    def self.song_count
+        Song.all.count
     end
 
 end
